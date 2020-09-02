@@ -1,4 +1,3 @@
-const port = 3001;
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const app = express();
@@ -9,6 +8,8 @@ const register = require("./controllers/register");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
+
+const PORT = process.env.PORT ? process.env.PORT : 3001;
 
 const db = knex({
   client: "pg",
@@ -47,6 +48,6 @@ app.post("/imageurl", (request, response) => {
   image.handleApiCall(request, response);
 });
 
-app.listen(port, () => {
-  console.log(`app is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`app is running on port ${PORT}`);
 });
